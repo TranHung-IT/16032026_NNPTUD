@@ -33,6 +33,7 @@ app.use('/api/v1/auth', require('./routes/auth'));
 app.use('/api/v1/inventories', require('./routes/inventories'));
 app.use('/api/v1/carts', require('./routes/carts'));
 app.use('/api/v1/reservations', require('./routes/reservations'));
+app.use('/api/v1/testing', require('./routes/testing'));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

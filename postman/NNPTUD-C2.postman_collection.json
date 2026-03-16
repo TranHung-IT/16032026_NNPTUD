@@ -1,0 +1,199 @@
+{
+  "info": {
+    "name": "NNPTUD-C2 API Test",
+    "description": "Collection test nhanh cho project NNPTUD-C2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "reservationId",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Seed Data",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/testing/seed",
+          "host": ["{{baseUrl}}"],
+          "path": ["testing", "seed"]
+        }
+      }
+    },
+    {
+      "name": "2. Seed Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/testing/seed-info",
+          "host": ["{{baseUrl}}"],
+          "path": ["testing", "seed-info"]
+        }
+      }
+    },
+    {
+      "name": "3. Login Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"customer\",\n  \"password\": \"Customer@123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "4. Get Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "me"]
+        }
+      }
+    },
+    {
+      "name": "5. Get Cart",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/carts",
+          "host": ["{{baseUrl}}"],
+          "path": ["carts"]
+        }
+      }
+    },
+    {
+      "name": "6. Reserve A Cart",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/reservations/reserveACart",
+          "host": ["{{baseUrl}}"],
+          "path": ["reservations", "reserveACart"]
+        }
+      }
+    },
+    {
+      "name": "7. Get All Reservations",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/reservations",
+          "host": ["{{baseUrl}}"],
+          "path": ["reservations"]
+        }
+      }
+    },
+    {
+      "name": "8. Reserve Items",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"product\": \"{{productId}}\",\n      \"quantity\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/reservations/reserveItems",
+          "host": ["{{baseUrl}}"],
+          "path": ["reservations", "reserveItems"]
+        }
+      }
+    },
+    {
+      "name": "9. Get One Reservation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/reservations/{{reservationId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["reservations", "{{reservationId}}"]
+        }
+      }
+    },
+    {
+      "name": "10. Cancel Reservation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/reservations/cancelReserve/{{reservationId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["reservations", "cancelReserve", "{{reservationId}}"]
+        }
+      }
+    }
+  ]
+}
